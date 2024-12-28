@@ -22,17 +22,27 @@ export class ProductService {
 
     console.log(thecategoryId)
     const searchUrl= `${this.baseUrl}/search/findByCategoryId?id=${thecategoryId}`;
-    console.log(searchUrl);
-    return this.httpclient.get<GetResponseProducts>(searchUrl).pipe(map(response =>
-      response._embedded.products
-    ));
+    return this.getProducts(searchUrl);
   }
   getProductCategory():Observable<ProductCategory[]> {
     return this.httpclient.get<GetResponseProductCategory>(this.categoryUrl).pipe(map(response  => 
       response._embedded.productCategory)
     );
   }
+
+  searchProduct(theyKeyword: string):Observable<Product[]> {
+    const searchValue= `${this.baseUrl}/search/findByNameContaining?name=${theyKeyword}`;
+    return this.getProducts(searchValue);
+  }
+
+
+  private getProducts(searchValue: string): Observable<Product[]> {
+    return this.httpclient.get<GetResponseProducts>(searchValue).pipe(map(response => response._embedded.products)
+    );
+  }
 }
+
+
 
 interface GetResponseProducts{
   _embedded:{
