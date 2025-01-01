@@ -2,6 +2,7 @@
     <div class="section-content section-content-p30">
         <div class="container-fluid">
             <div class="row">
+
                <div *ngFor="let product of products" class="col-md-3">
 
                 <div class="product-box">
@@ -22,6 +23,38 @@
                  </div>
 
             </div>
+                <!-- Footer content -->
+                <div class="footer-pagination">
+                    <div class="row">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-9" style="padding-left:30%">
+                                    <ngb-pagination [(page)]="thePageNumber"
+                                    [pageSize]="thePageSize"
+                                    [maxSize]="5"
+                                    [boundaryLinks]="true"
+                                    [collectionSize]="theTotalElements"
+                                    (pageChange)="listProduct()">
+
+                                    </ngb-pagination>
+                                </div>
+                                <div class="col-md-12 mt-2" style="text-align: right;">
+                                    <span class="mr-2">Page Size</span>
+                                    <select #mySelect (change)="updatePageSize(mySelect.value)">
+                                        <option>2</option>
+                                        <option selected="true">
+                                                    5
+                                        </option>
+                                        <option>10</option>
+                                        <option>20</option>
+                                        <option>50</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
         </div>
     </div>
 </div>
