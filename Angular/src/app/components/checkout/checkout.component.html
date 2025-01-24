@@ -12,6 +12,10 @@
                     <div class="col-md-8">
                         <div class="input-space">
                             <input formControlName="firstName" type="text">
+                            <div *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)" class="alert alert-danger mt-1">
+                               Please valid first Name 
+                               
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -22,6 +26,9 @@
                     <div class="col-md-8">
                         <div class="input-space">
                             <input formControlName="lastName" type="text">
+                            <div *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)" class="alert alert-danger mt-1">
+                                Please valid last Name 
+                             </div>
                         </div>
                     </div>
                 </div>
@@ -32,6 +39,10 @@
                     <div class="col-md-8">
                         <div class="input-space">
                             <input formControlName="email" type="text">
+                            <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="alert alert-danger mt-1">
+                                Please valid Email Address 
+                            
+                             </div>
                         </div>
                     </div>
                 </div>
@@ -45,9 +56,15 @@
                     </div>
                     <div class="col-md-8">
                         <div class="input-space">
-                           <select formControlName="country">
-                            <option>To Do</option>
+                           <select formControlName="country" (change)="getStates('shippingAddress')">
+                            <option *ngFor="let country of countries" [ngValue]="country">
+                                {{country.name}}
+                            </option>
                            </select>
+                           <div *ngIf="shippingAddressCountry?.invalid && (shippingAddressCountry?.dirty || shippingAddressCountry?.touched)" class="alert alert-danger mt-1">
+                            Please Select the Country; 
+                        
+                         </div>
                         </div>
                     </div>
                 </div>
@@ -58,6 +75,10 @@
                     <div class="col-md-8">
                         <div class="input-space">
                             <input formControlName="street" type="text">
+                            <div *ngIf="shippingAddressStreet?.invalid && (shippingAddressStreet?.dirty || shippingAddressStreet?.touched)" class="alert alert-danger mt-1">
+                                Please Enter the Street
+                            
+                             </div>
                         </div>
                     </div>
                 </div>
@@ -68,6 +89,10 @@
                     <div class="col-md-8">
                         <div class="input-space">
                             <input formControlName="city" type="text">
+                            <div *ngIf="shippingAddressCity?.invalid && (shippingAddressCity?.dirty || shippingAddressCity?.touched)" class="alert alert-danger mt-1">
+                               Please enter the City
+                            
+                             </div>
                         </div>
                     </div>
                 </div>
@@ -78,8 +103,14 @@
                     <div class="col-md-8">
                         <div class="input-space">
                            <select formControlName="state">
-                            <option>To Do</option>
+                                <option *ngFor="let state of shippingAddressState" [ngValue]="state">
+                                        {{state.name}}
+                                </option>
                            </select>
+                           <div *ngIf="shippingAddressStates?.invalid && (shippingAddressStates?.dirty || shippingAddressStates?.touched)" class="alert alert-danger mt-1">
+                            Please select the State
+                         
+                          </div>
                         </div>
                     </div>
                 </div>
@@ -90,6 +121,10 @@
                     <div class="col-md-8">
                         <div class="input-space">
                             <input formControlName="zipCode" type="text">
+                            <div *ngIf="shippingAddressZipCode?.invalid && (shippingAddressZipCode?.dirty || shippingAddressZipCode?.touched)" class="alert alert-danger mt-1">
+                                Please Enter the ZipCode
+                             
+                              </div>
                         </div>
                     </div>
                 </div>
@@ -102,7 +137,7 @@
                 </label>
               </div>
              <!-- Billing Address -->
-             <div formGroupName="shippingAddress" class="form-area">
+             <div formGroupName="billingAddress" class="form-area">
                 <h3>Billing Address</h3>
                 <div class="row">
                     <div class="col-md-4">
@@ -110,9 +145,15 @@
                     </div>
                     <div class="col-md-8">
                         <div class="input-space">
-                           <select formControlName="country">
-                            <option>To Do</option>
+                           <select formControlName="country" (change)="getStates('billingAddress')">
+                            <option *ngFor="let country of countries" [ngValue]="country">
+                                {{country.name}}
+                            </option>
                            </select>
+                           <div *ngIf="billingAddressCountry?.invalid && (billingAddressCountry?.dirty || billingAddressCountry?.touched)" class="alert alert-danger mt-1">
+                            Please Select the Country; 
+                        
+                         </div>
                         </div>
                     </div>
                 </div>
@@ -123,6 +164,10 @@
                     <div class="col-md-8">
                         <div class="input-space">
                             <input formControlName="street" type="text">
+                            <div *ngIf="billingAddressStreet?.invalid && (billingAddressStreet?.dirty || billingAddressStreet?.touched)" class="alert alert-danger mt-1">
+                                Please Enter the Street
+                            
+                             </div>
                         </div>
                     </div>
                 </div>
@@ -133,6 +178,10 @@
                     <div class="col-md-8">
                         <div class="input-space">
                             <input formControlName="city" type="text">
+                            <div *ngIf="billingAddressCity?.invalid && (billingAddressCity?.dirty || billingAddressCity?.touched)" class="alert alert-danger mt-1">
+                                Please enter the City
+                             
+                              </div>
                         </div>
                     </div>
                 </div>
@@ -143,8 +192,14 @@
                     <div class="col-md-8">
                         <div class="input-space">
                            <select formControlName="state">
-                            <option>To Do</option>
+                            <option *ngFor="let state of billingAddressState" [ngValue]="state">
+                                {{state.name}}
+                        </option>
                            </select>
+                           <div *ngIf="billingAddressStates?.invalid && (billingAddressStates?.dirty || billingAddressStates?.touched)" class="alert alert-danger mt-1">
+                            Please select the State
+                         
+                          </div>
                         </div>
                     </div>
                 </div>
@@ -155,6 +210,10 @@
                     <div class="col-md-8">
                         <div class="input-space">
                             <input formControlName="zipCode" type="text">
+                            <div *ngIf="billingAddressZipCode?.invalid && (billingAddressZipCode?.dirty || billingAddressZipCode?.touched)" class="alert alert-danger mt-1">
+                                Please Enter the ZipCode
+                             
+                              </div>
                         </div>
                     </div>
                 </div>
@@ -173,6 +232,10 @@
                                 <option>Visa</option>
                                 <option>MasterCard</option>
                                </select>
+                               <div *ngIf="creditCardType?.invalid && (creditCardType?.dirty || creditCardType?.touched)" class="alert alert-danger mt-1">
+                                Please select the card Type
+                             
+                              </div>
                         </div>
                     </div>
                 </div>
@@ -183,6 +246,10 @@
                     <div class="col-md-8">
                         <div class="input-space">
                             <input formControlName="nameOnCard" type="text">
+                            <div *ngIf="creditCardNameonCard?.invalid && (creditCardNameonCard?.dirty || creditCardNameonCard?.touched)" class="alert alert-danger mt-1">
+                                Please select the name 
+                             
+                              </div>
                         </div>
                     </div>
                 </div> 
@@ -193,6 +260,10 @@
                     <div class="col-md-8">
                         <div class="input-space">
                             <input formControlName="cardNumber" type="text">
+                            <div *ngIf="creditCardNumber?.invalid && (creditCardNumber?.dirty || creditCardNumber?.touched)" class="alert alert-danger mt-1">
+                                Please enter the Card Number 
+                             
+                              </div>
                         </div>
                     </div>
                 </div> 
@@ -203,6 +274,10 @@
                     <div class="col-md-8">
                         <div class="input-space">
                             <input formControlName="securityCode" type="text">
+                            <div *ngIf="creditCardSecurityCode?.invalid && (creditCardSecurityCode?.dirty || creditCardSecurityCode?.touched)" class="alert alert-danger mt-1">
+                                Please enter the security code
+                             
+                              </div>
                         </div>
                     </div>
                 </div> 
@@ -213,7 +288,9 @@
                     <div class="col-md-8">
                         <div class="input-space">
                             <select formControlName="expirationMonth">
-                                <option>TO DO</option>
+                                <option *ngFor="let month of creditCardMonths">
+                                    {{month}}
+                                </option>
                                </select>
                         </div>
                     </div>
@@ -224,8 +301,10 @@
                     </div>
                     <div class="col-md-8">
                         <div class="input-space">
-                            <select formControlName="expirationYear">
-                                <option>TO DO</option>
+                            <select formControlName="expirationYear" (change)="handleMonthsAndYears()">
+                                <option *ngFor="let year of creditCardYears">
+                                    {{year}}
+                                </option>
                                </select>
                         </div>
                     </div>
